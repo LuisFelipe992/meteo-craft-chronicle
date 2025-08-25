@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estação Meteorológica - Monitoramento em Tempo Real</title>
+    <meta name="description" content="Sistema de monitoramento meteorológico em tempo real com análise histórica de temperatura, umidade, pressão, chuva e umidade do solo.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-cloud-sun"></i> Estação Meteorológica</h1>
+                <p>Monitoramento em tempo real • Última atualização: <span id="last-update"></span></p>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </button>
+                <button class="tab-button" data-tab="history">
+                    <i class="fas fa-chart-line"></i>
+                    Análise Histórica
+                </button>
+            </div>
+
+            <div id="dashboard" class="tab-content active">
+                <div class="widgets-grid">
+                    <div class="weather-widget temperature">
+                        <div class="widget-header">
+                            <h3>Temperatura</h3>
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="widget-content">
+                            <div class="value">
+                                <span id="temperature-value">--</span>
+                                <span class="unit">°C</span>
+                            </div>
+                            <div class="trend" id="temperature-trend"></div>
+                        </div>
+                    </div>
+
+                    <div class="weather-widget humidity">
+                        <div class="widget-header">
+                            <h3>Umidade</h3>
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="widget-content">
+                            <div class="value">
+                                <span id="humidity-value">--</span>
+                                <span class="unit">%</span>
+                            </div>
+                            <div class="trend" id="humidity-trend"></div>
+                        </div>
+                    </div>
+
+                    <div class="weather-widget pressure">
+                        <div class="widget-header">
+                            <h3>Pressão</h3>
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="widget-content">
+                            <div class="value">
+                                <span id="pressure-value">--</span>
+                                <span class="unit">hPa</span>
+                            </div>
+                            <div class="trend" id="pressure-trend"></div>
+                        </div>
+                    </div>
+
+                    <div class="weather-widget rain">
+                        <div class="widget-header">
+                            <h3>Precipitação</h3>
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="widget-content">
+                            <div class="value">
+                                <span id="rainfall-value">--</span>
+                                <span class="unit">mm</span>
+                            </div>
+                            <div class="trend" id="rainfall-trend"></div>
+                        </div>
+                    </div>
+
+                    <div class="weather-widget soil">
+                        <div class="widget-header">
+                            <h3>Umidade do Solo</h3>
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="widget-content">
+                            <div class="value">
+                                <span id="soil-moisture-value">--</span>
+                                <span class="unit">%</span>
+                            </div>
+                            <div class="trend" id="soil-moisture-trend"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-bar">
+                    <div class="status-item">
+                        <i class="fas fa-wifi status-online"></i>
+                        <span>Sensores Online</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Próxima leitura em <span id="next-reading">5s</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="history" class="tab-content">
+                <div class="history-controls">
+                    <div class="metric-selector">
+                        <label for="metric-select">Métrica:</label>
+                        <select id="metric-select">
+                            <option value="temperature">Temperatura</option>
+                            <option value="humidity">Umidade</option>
+                            <option value="pressure">Pressão</option>
+                            <option value="rainfall">Precipitação</option>
+                            <option value="soilMoisture">Umidade do Solo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="history-chart"></canvas>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Mínimo</h4>
+                        <div class="stat-value" id="stat-min">--</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Máximo</h4>
+                        <div class="stat-value" id="stat-max">--</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Média</h4>
+                        <div class="stat-value" id="stat-avg">--</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Última Leitura</h4>
+                        <div class="stat-value" id="stat-current">--</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
