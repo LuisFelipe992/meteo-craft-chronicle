@@ -52,6 +52,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				temperature: 'hsl(var(--temperature))',
+				humidity: 'hsl(var(--humidity))',
+				pressure: 'hsl(var(--pressure))',
+				rain: 'hsl(var(--rain))',
+				soil: 'hsl(var(--soil))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +67,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-sky': 'var(--gradient-sky)',
+				'gradient-earth': 'var(--gradient-earth)',
+				'gradient-atmosphere': 'var(--gradient-atmosphere)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
